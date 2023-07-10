@@ -20,7 +20,19 @@ public class MainRestController
         credential.setId(username);
         credential.setPassword(password);
         credentialRepository.save(credential);
+
+        String walletid = String.valueOf((int)(Math.random()*10000));
+        Wallet wallet = new Wallet();
+        wallet.setId(walletid);
+        wallet.setBalance(0);
+
+        Usernamewalletlink usernamewalletlink = new Usernamewalletlink();
+        usernamewalletlink.setId(username);
+        usernamewalletlink.setWalletid(walletid);
+
         return new ResponseEntity<>("New User Successfully Signed Up", HttpStatus.OK);
+
+
     }
 
 }
